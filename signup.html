@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - XRConnect</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card auth-card-wide">
+            <div class="auth-header">
+                <div class="logo">
+                    <div class="logo-icon">XR</div>
+                    <span class="logo-text">XRConnect</span>
+                </div>
+
+                <div class="step-indicator">
+                    <div class="badge badge-secondary">Step <span id="currentStep">1</span> of 3</div>
+                    <div class="step-label" id="stepLabel">Account Details</div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <h1 class="auth-title" id="stepTitle">Create Your Account</h1>
+                <p class="auth-description" id="stepDescription">Enter your details to get started with XRConnect</p>
+            </div>
+
+            <form class="auth-form" id="signupForm">
+                <!-- Step 1: Basic Information -->
+                <div class="step-content active" id="step1">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" id="firstName" class="form-input" placeholder="Enter your first name" required>
+                            <div class="error-message" id="firstNameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" id="lastName" class="form-input" placeholder="Enter your last name" required>
+                            <div class="error-message" id="lastNameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="Enter your email address" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" id="password" class="form-input" placeholder="Create a strong password" required>
+                            <button type="button" class="input-toggle" onclick="togglePassword('password')">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength" style="display: none;">
+                            <div class="strength-label">
+                                <span>Password strength:</span>
+                                <span id="strengthText">Weak</span>
+                            </div>
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                        </div>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <div class="input-group">
+                            <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+                            <button type="button" class="input-toggle" onclick="togglePassword('confirmPassword')">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Preferences -->
+                <div class="step-content" id="step2">
+                    <div class="form-group">
+                        <label class="form-label">What's your primary device for XR experiences?</label>
+                        <div class="device-grid">
+                            <div class="device-option" data-device="mobile">
+                                <div class="device-icon">📱</div>
+                                <h3 class="device-title">Mobile/Tablet</h3>
+                                <div class="device-check">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 6 9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="device-option" data-device="desktop">
+                                <div class="device-icon">💻</div>
+                                <h3 class="device-title">Desktop/Laptop</h3>
+                                <div class="device-check">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 6 9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="device-option" data-device="vr">
+                                <div class="device-icon">🥽</div>
+                                <h3 class="device-title">VR Headset</h3>
+                                <div class="device-check">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 6 9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="device-option" data-device="mixed">
+                                <div class="device-icon">🔄</div>
+                                <h3 class="device-title">Multiple Devices</h3>
+                                <div class="device-check">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 6 9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" id="deviceError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">What interests you most? (Select all that apply)</label>
+                        <div class="interests-grid">
+                            <button type="button" class="interest-tag" data-interest="Virtual Reality">Virtual Reality</button>
+                            <button type="button" class="interest-tag" data-interest="Augmented Reality">Augmented Reality</button>
+                            <button type="button" class="interest-tag" data-interest="Education">Education</button>
+                            <button type="button" class="interest-tag" data-interest="Gaming">Gaming</button>
+                            <button type="button" class="interest-tag" data-interest="Productivity">Productivity</button>
+                            <button type="button" class="interest-tag" data-interest="Art & Design">Art & Design</button>
+                            <button type="button" class="interest-tag" data-interest="Science">Science</button>
+                            <button type="button" class="interest-tag" data-interest="Architecture">Architecture</button>
+                            <button type="button" class="interest-tag" data-interest="Entertainment">Entertainment</button>
+                            <button type="button" class="interest-tag" data-interest="Social">Social</button>
+                            <button type="button" class="interest-tag" data-interest="Fitness">Fitness</button>
+                            <button type="button" class="interest-tag" data-interest="Travel">Travel</button>
+                        </div>
+                        <div class="error-message" id="interestsError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">What's your experience level with XR?</label>
+                        <div class="experience-options">
+                            <div class="experience-option" data-level="beginner">
+                                <div class="experience-radio"></div>
+                                <div class="experience-content">
+                                    <h4 class="experience-title">Beginner</h4>
+                                    <p class="experience-description">New to XR experiences</p>
+                                </div>
+                            </div>
+                            <div class="experience-option" data-level="intermediate">
+                                <div class="experience-radio"></div>
+                                <div class="experience-content">
+                                    <h4 class="experience-title">Intermediate</h4>
+                                    <p class="experience-description">Some XR experience</p>
+                                </div>
+                            </div>
+                            <div class="experience-option" data-level="advanced">
+                                <div class="experience-radio"></div>
+                                <div class="experience-content">
+                                    <h4 class="experience-title">Advanced</h4>
+                                    <p class="experience-description">Experienced XR user</p>
+                                </div>
+                            </div>
+                            <div class="experience-option" data-level="professional">
+                                <div class="experience-radio"></div>
+                                <div class="experience-content">
+                                    <h4 class="experience-title">Professional</h4>
+                                    <p class="experience-description">XR developer/creator</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" id="experienceError"></div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Privacy & Terms -->
+                <div class="step-content" id="step3">
+                    <div class="privacy-notice">
+                        <h3 class="privacy-title">Privacy-First Approach</h3>
+                        <p class="privacy-description">
+                            XRConnect is built with privacy at its core. We collect minimal data and give you full control over 
+                            your information. You can change these settings anytime in your privacy dashboard.
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox" id="agreeTerms" required>
+                            <span class="checkbox-text">
+                                I agree to the <a href="#terms" class="auth-link">Terms of Service</a>
+                            </span>
+                        </label>
+                        <div class="error-message" id="termsError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox" id="agreePrivacy" required>
+                            <span class="checkbox-text">
+                                I agree to the <a href="#privacy" class="auth-link">Privacy Policy</a>
+                            </span>
+                        </label>
+                        <div class="error-message" id="privacyError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox" id="allowMarketing">
+                            <span class="checkbox-text">
+                                I'd like to receive marketing emails about new features and special offers (optional)
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox" id="enableAnalytics" checked>
+                            <span class="checkbox-text">
+                                Help improve XRConnect by sharing anonymous usage analytics (recommended)
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="data-rights">
+                        <div class="data-rights-icon">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div class="data-rights-content">
+                            <h4 class="data-rights-title">Your Data Rights</h4>
+                            <p class="data-rights-description">
+                                You have full control over your data. You can view, download, or delete your information 
+                                at any time from your privacy dashboard.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-outline" id="prevBtn" onclick="previousStep()" disabled>Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next Step</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Create Account</button>
+                </div>
+
+                <!-- Sign In Link -->
+                <div class="auth-links">
+                    <p class="auth-text">
+                        Already have an account? 
+                        <a href="login.html" class="auth-link">Sign in here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/signup.js"></script>
+</body>
+</html>
